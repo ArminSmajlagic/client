@@ -1,0 +1,19 @@
+<div class="row mb-5"></div>
+<div class="row mt-5 d-flex flex-column">
+
+  <div class="alert alert-danger row w-50" *ngIf="error!=''">
+    <p class="">{{error}}</p>
+  </div>
+  <div class="col-lg-7 col-md-11">
+    <form (ngSubmit)="onSubmit(authForm)"  #authForm="ngForm" class="form-group d-flex flex-column p-5 align-items-center">
+      <label for="username" class="fw-bold fs-5">Username</label>
+      <input type="text" class="form-control m-4" ngModel name="username" required minlength="6">
+
+      <label for="password" class="fw-bold fs-5">Password</label>
+      <input type="password" class="form-control m-4" ngModel name="password" required minlength="6">
+
+      <input type="submit" class="btn btn-primary" value="Login" [disabled]="!authForm.valid">
+    </form>
+  </div>
+  <div class="col-lg-4"></div>
+</div>
