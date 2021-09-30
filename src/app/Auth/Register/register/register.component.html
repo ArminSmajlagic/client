@@ -1,0 +1,53 @@
+<div class="container d-flex justify-content-center align-items-center mt-5 bg-light col-lg-5 col-md-9 col-sm-12 mb-5">
+<form (ngSubmit)="onSubmit(authForm)" class="form-group d-flex flex-column col-lg-8  col-md-10 col-sm-12 col-xs-12 mt-5 justify-content-center align-items-center" #authForm="ngForm" >
+  <label for="" class="fw-bold fs-2 m-3">Register</label>
+  <label for="email" class="fw-bold mt-1">Email</label>
+  <div class="col-7 d-flex flex-column justify-content-center align-items-center">
+    <input type="email" class="form-control mt-2" ngModel name="email" required email #email="ngModel">
+    <span class="help-block text-danger" *ngIf="!email.valid && email.touched">Please enter valid email.</span>
+  </div>
+  <label for="ime_prezime" class="fw-bold mt-1">Ime prezime</label>
+  <div class="col-7 d-flex flex-column justify-content-center align-items-center">
+    <input type="text" class="form-control col-6 mt-2" name="ime_prezime" ngModel required maxlength="20" minlength="5" #ime_prezime="ngModel">
+  </div>
+  <label for="username" class="fw-bold mt-1">Username</label>
+  <div class="col-7 d-flex flex-column justify-content-center align-items-center">
+    <input type="text" class="form-control col-6 mt-2" name="username" ngModel required minlength="5" maxlength="15" #username="ngModel">
+    <span class="help-block text-danger" *ngIf="!username.valid && username.touched">Username has to be bigger then 5 and smaller then 15.</span>
+  </div>
+    <label for="password" class="fw-bold mt-1">Password</label>
+  <div class="col-7 d-flex flex-column justify-content-center align-items-center">
+    <input type="password" class="form-control col-6 mt-2" name="password" ngModel required minlength="6" maxlength="20" #password="ngModel">
+    <span class="help-block text-danger" *ngIf="!password.valid && password.touched">Password has to be bigger then 6 and smaller then 20.</span>
+  </div>
+    <label for="conf_password" class="fw-bold mt-1">Confirm password</label>
+  <div class="col-7 d-flex flex-column justify-content-center align-items-center">
+    <input type="password" class="form-control col-6 mt-2" name="conf_password" ngModel required #confPasw="ngModel">
+    <span class="help-block text-danger" *ngIf="confPasw.value!=password.value && confPasw.touched ">Passwords need to match!.</span>
+  </div>
+    <label for="jmbg" class="fw-bold mt-1">JMBG</label>
+  <div class="col-7 d-flex flex-column justify-content-center align-items-center">
+    <input type="text" class="form-control col-6 mt-2" name="jmbg" ngModel required>
+  </div>
+  <label for="bdate" class="fw-bold mt-1">Birth date</label>
+  <div class="col-7 d-flex flex-column justify-content-center align-items-center">
+   <input type="date" class="form-control col-6 mt-2" name="bdate" ngModel required>
+  </div>
+  <label for="gender" class="mt-2 fw-bold mt-1">Gender</label>
+  <div class="gender d-flex flex-column mt-2 ">
+    <div class="flex-row m-1">
+      <input type="checkbox" class="fw-bold" name="gender_m" ngModel value="male">
+      <label for="gender" class="m-1 fw-bold">Male</label>
+    </div>
+    <div class="flex-row m-1">
+      <input type="checkbox" class="fw-bold" name="gender_f" ngModel value="female">
+      <label for="gender" class="m-1 fw-bold">Female</label>
+    </div>
+    <div class="flex-row m-1">
+      <input type="checkbox" class="fw-bold" name="gender_x" ngModel value="not specified">
+      <label for="gender" class="m-1 fw-bold">Not specified</label>
+    </div>
+  </div>
+  <input type="submit" value="Register" class="btn btn-primary  mb-5 mt-5 fw-bold" [disabled]="!authForm.valid">
+</form>
+</div>

@@ -12,6 +12,7 @@ export class AuthService {
   public currentUser: Observable<User|null>;
 
   url='https://localhost:44398/Login';
+  urlReg='https://localhost:44398/Register';
   constructor(private http:HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User|null>(JSON.parse(localStorage.getItem('currentUser') as string));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -26,6 +27,10 @@ export class AuthService {
         }));
   }
 
+  register(email:string,ime_prezime:string,username:string,password:string,jmbg:string,bdate:string){
+    return this.http.post<any>(this.urlReg, {email,ime_prezime,jmbg,bdate,username, password });
+  }
+
   logout(){
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
@@ -33,5 +38,5 @@ export class AuthService {
 
   public get currentUserValue(): User | null{
     return this.currentUserSubject.value;
-}
+  }
 }

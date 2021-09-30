@@ -9,7 +9,8 @@ import { LoginComponent } from './Auth/Component/login/login.component';
 import { AuthService } from './Auth/Service/auth.service';
 import { HomeComponent } from './Home/home/home.component';
 import { FootballComponent } from './sports-view/football/football.component';
-import { NavbarComponent } from './navigation/navbar/navbar.component';
+import { NavbarComponent } from './Navigation/navbar/navbar.component';
+import { RegisterComponent } from './Auth/Register/register/register.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NavbarComponent } from './navigation/navbar/navbar.component';
     HomeComponent,
     FootballComponent,
     NavbarComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
