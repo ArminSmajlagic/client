@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ComponentFactoryResolver, Input, Output, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthService } from './Auth/Service/auth.service';
+import { User } from './Models/User';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'client';
+  title = 'Angular client for Evona Hackathon Betting-API';
+  constructor(private authService:AuthService) {
+  }
+
 }

@@ -3,35 +3,39 @@
   <label for="" class="fw-bold fs-2 m-3">Register</label>
   <label for="email" class="fw-bold mt-1">Email</label>
   <div class="col-7 d-flex flex-column justify-content-center align-items-center">
-    <input type="email" class="form-control mt-2" ngModel name="email" required email #email="ngModel">
-    <span class="help-block text-danger" *ngIf="!email.valid && email.touched">Please enter valid email.</span>
+    <input type="email" class="form-control mt-2" ngModel name="email" required #email="ngModel" [style.border]="!email.valid && email.touched ? '1px solid red' : ''">
+    <span class="help-block mt-1 text-light p-1 rounded-3 validation-text align-content-center text-center" *ngIf="!email.valid && email.touched">Please enter valid email.</span>
   </div>
   <label for="ime_prezime" class="fw-bold mt-1">Ime prezime</label>
   <div class="col-7 d-flex flex-column justify-content-center align-items-center">
-    <input type="text" class="form-control col-6 mt-2" name="ime_prezime" ngModel required maxlength="20" minlength="5" #ime_prezime="ngModel">
+    <input type="text" class="form-control col-6 mt-2" name="ime_prezime" ngModel required maxlength="20" minlength="5" #ime_prezime="ngModel" [style.border]="!ime_prezime.valid && ime_prezime.touched ? '1px solid red' : ''">
+    <span class="help-block mt-1 text-light p-1 rounded-3 validation-text align-content-center text-center" *ngIf="!ime_prezime.valid && ime_prezime.touched">You must enter valid first and last name.</span>
   </div>
   <label for="username" class="fw-bold mt-1">Username</label>
   <div class="col-7 d-flex flex-column justify-content-center align-items-center">
-    <input type="text" class="form-control col-6 mt-2" name="username" ngModel required minlength="5" maxlength="15" #username="ngModel">
-    <span class="help-block text-danger" *ngIf="!username.valid && username.touched">Username has to be bigger then 5 and smaller then 15.</span>
+    <input type="text" class="form-control col-6 mt-2" name="username" ngModel required minlength="5" maxlength="15" #username="ngModel" [style.border]="!username.valid && username.touched ? '1px solid red' : ''">
+    <span class="validation-text help-block mt-1 text-light p-1 rounded-3 text-center" *ngIf="!username.valid && username.touched">Username has to be bigger then 5 and smaller then 15.</span>
   </div>
     <label for="password" class="fw-bold mt-1">Password</label>
   <div class="col-7 d-flex flex-column justify-content-center align-items-center">
-    <input type="password" class="form-control col-6 mt-2" name="password" ngModel required minlength="6" maxlength="20" #password="ngModel">
-    <span class="help-block text-danger" *ngIf="!password.valid && password.touched">Password has to be bigger then 6 and smaller then 20.</span>
+    <input type="password" class="form-control col-6 mt-2" name="password" ngModel required minlength="6" maxlength="20" #password="ngModel" [style.border]="!password.valid && password.touched ? '1px solid red' : ''">
+    <span class="help-block mt-1 text-light p-1 rounded-3 validation-text text-center" *ngIf="!password.valid && password.touched">Password has to be bigger then 6 and smaller then 20.</span>
   </div>
     <label for="conf_password" class="fw-bold mt-1">Confirm password</label>
   <div class="col-7 d-flex flex-column justify-content-center align-items-center">
-    <input type="password" class="form-control col-6 mt-2" name="conf_password" ngModel required #confPasw="ngModel">
-    <span class="help-block text-danger" *ngIf="confPasw.value!=password.value && confPasw.touched ">Passwords need to match!.</span>
+    <input type="password" class="form-control col-6 mt-2" name="conf_password" ngModel required #confPasw="ngModel" [style.border]="!confPasw.valid && confPasw.touched ? '1px solid red' : ''">
+    <span class="help-block mt-1 text-light validation-text p-1 rounded-3 text-center" *ngIf="(confPasw.value!=password.value && confPasw.touched) || (confPasw.touched && !confPasw.valid)">Passwords need to match!.</span>
   </div>
     <label for="jmbg" class="fw-bold mt-1">JMBG</label>
   <div class="col-7 d-flex flex-column justify-content-center align-items-center">
-    <input type="text" class="form-control col-6 mt-2" name="jmbg" ngModel required>
+    <input type="text" class="form-control col-6 mt-2" name="jmbg" ngModel required #jmbg="ngModel" [style.border]="!jmbg.valid && jmbg.touched ? '1px solid red' : ''">
+    <span class="help-block mt-1 text-light validation-text p-1 rounded-3 text-center" *ngIf="jmbg.value=='' && jmbg.touched">Please enter valid JMBG.</span>
+
   </div>
   <label for="bdate" class="fw-bold mt-1">Birth date</label>
-  <div class="col-7 d-flex flex-column justify-content-center align-items-center">
-   <input type="date" class="form-control col-6 mt-2" name="bdate" ngModel required>
+  <div class="col-7 d-flex flex-column justify-content-center align-items-center" >
+    <input type="date" class="form-control col-6 mt-2" name="bdate" ngModel required #bdate="ngModel" [style.border]="!bdate.valid && bdate.touched ? '1px solid red' : ''">
+    <span class="help-block mt-1 text-light validation-text p-1 rounded-3 text-center" *ngIf="!bdate.valid && bdate.touched">Please specify a date.</span>
   </div>
   <label for="gender" class="mt-2 fw-bold mt-1">Gender</label>
   <div class="gender d-flex flex-column mt-2 ">
@@ -48,6 +52,28 @@
       <label for="gender" class="m-1 fw-bold">Not specified</label>
     </div>
   </div>
-  <input type="submit" value="Register" class="btn btn-primary  mb-5 mt-5 fw-bold" [disabled]="!authForm.valid">
+  <input type="submit" value="Register" class="btn btn-primary  mb-5 mt-5 fw-bold" [disabled]="authForm.valid" data-bs-toggle="modal" data-bs-target="#exampleModal">
 </form>
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Uspješno ste kreirali racun {{ime_prezime}}, kao {{username}}.</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>

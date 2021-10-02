@@ -10,6 +10,8 @@ import { AuthService } from '../../Service/auth.service';
 })
 export class RegisterComponent implements OnInit {
   res:string="";
+  username:string="";
+  ime_prezime:string="";
   constructor(private authService:AuthService,private router:Router) { }
 
   ngOnInit(): void {
@@ -18,6 +20,7 @@ export class RegisterComponent implements OnInit {
   onSubmit(form:NgForm){
     this.authService.register(form.value.email,form.value.ime_prezime,form.value.username,form.value.password,form.value.jmbg,form.value.bdate).subscribe(res=>this.res=res);
     console.log(this.res);
-    this.router.navigate(['/auth']);
+    this.username=form.value.username;
+    this.ime_prezime=form.value.ime_prezime;
   }
 }

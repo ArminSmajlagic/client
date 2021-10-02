@@ -11,4 +11,8 @@ export class post{
       this.id=id;
   }
 
+  public static create(ime_prezime:String,username:String,wallet:number,id:number):post{
+    return new post(ime_prezime,username,wallet,id);
+  }
+
 }

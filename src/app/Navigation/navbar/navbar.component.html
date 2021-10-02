@@ -13,15 +13,16 @@
           <a class="nav-link" routerLink="/games">Sports</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <div *ngIf="logedIn==false">
+      <div class="d-flex"  *ngIf="(isLoggedIn$ | async)==false" >
         <button class="btn btn-outline-success m-1"  routerLink="/auth">Login</button>
         <button class="btn btn-outline-success m-1" routerLink="/register">Register</button>
       </div>
-      <div *ngIf="logedIn==true">
-        <button class="btn btn-outline-success m-1" routerLink="/" (click)="logout()">Log out</button>
-      </div>
-      </form>
+
+      <div class="d-flex"  *ngIf="(isLoggedIn$ | async)==true" >
+        <input class="m-1 border rounded-1" type="search" placeholder="Search" aria-label="Search" >
+        <button class="btn btn-outline-success m-1 " type="submit">Search</button>
+        <button class=" btn btn-outline-success m-1 " routerLink="/" (click)="logout()">Log out</button>
+    </div>
     </div>
   </div>
 </nav>

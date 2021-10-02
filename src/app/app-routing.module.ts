@@ -4,7 +4,7 @@ import { LoginComponent } from './Auth/Component/login/login.component';
 import { RegisterComponent } from './Auth/Register/register/register.component';
 import { AuthGuard } from './Auth/Service/authguard';
 import { HomeComponent } from './Home/home/home.component';
-import { FootballComponent } from './sports-view/football/football.component';
+import { FootballComponent } from './sports-view/football-component/football.component';
 
 const routes: Routes = [
 {path:'',component:HomeComponent,},

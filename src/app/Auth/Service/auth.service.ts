@@ -10,6 +10,11 @@ import { User } from 'src/app/Models/User';
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User|null>;
   public currentUser: Observable<User|null>;
+  private loggedIn = new BehaviorSubject<boolean>(false);
+
+  get isLoggedIn() {
+    return this.loggedIn.asObservable();
+  }
 
   url='https://localhost:44398/Login';
   urlReg='https://localhost:44398/Register';
@@ -23,6 +28,7 @@ export class AuthService {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(user));
             this.currentUserSubject.next(user);
+            this.loggedIn.next(true);
             return user;
         }));
   }
@@ -34,6 +40,8 @@ export class AuthService {
   logout(){
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+    this.loggedIn.next(false);
+
   }
 
   public get currentUserValue(): User | null{

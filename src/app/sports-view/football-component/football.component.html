@@ -1,0 +1,22 @@
+<div class="container d-flex flex-column align-items-center justify-content-center">
+  <div class="container d-flex flex-column align-items-center justify-content-center mt-5 w-100 h-100 m-0 p-0">
+    <p *ngIf="posts.length==0">No items available</p>
+      <div class="bg-dark w-100 m-1 d-flex flex-column" *ngFor="let item of posts">
+         <app-game [post]="item"></app-game>
+      </div>
+      <div class="img h-100">
+        <img src="https://apis.zlatnik.me//bannerApi/BannerImages/4588/WebBannerTP.png" class="d-block w-100" alt="...">
+      </div>
+    </div>
+
+
+  <nav aria-label="Page navigation example" class="mt-5">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav>
+</div>

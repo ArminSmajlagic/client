@@ -3,6 +3,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/Auth/Service/auth.service';
+import { game } from '../Item/game';
 import { post } from '../Item/post';
 
 @Component({
@@ -12,17 +13,17 @@ import { post } from '../Item/post';
 })
 export class FootballComponent implements OnInit {
   constructor(private authService:AuthService,private router:Router,private httpClient:HttpClient) { }
-  url:string="https://localhost:44398/api/v1/Korisnici"
-  posts:post[]=[];
+  url:string="https://localhost:44398/api/v1/Game"
+  posts:game[]=[];
   ngOnInit(): void {
     this.fetchPosts();
   }
 
   fetchPosts(){
-    this.httpClient.get<post[]>(this.url)
+    this.httpClient.get<game[]>(this.url)
     .pipe(
       map(resData => {
-        const array:post[]=[];
+        const array:game[]=[];
         for(const i in resData){
           array.push({...resData[i]});
         };

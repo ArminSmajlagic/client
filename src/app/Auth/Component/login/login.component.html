@@ -6,12 +6,15 @@
   <label for="" class="fw-bold fs-2 mt-3">Login</label>
   <form action="" (ngSubmit)="onSubmit(authForm)"  #authForm="ngForm" class="from-group d-flex flex-column col-lg-11 justify-content-center align-items-center mt-3 ">
     <label for="username" class="fw-bold mt-1">Username</label>
-    <div class="col-7">
-    <input type="text" class="form-control col-3 mt-2" ngModel name="username" required minlength="6">
-    </div>
-    <label for="password" class="fw-bold mt-1">Password</label>
-    <div class="col-7">
-    <input type="password" class="form-control col-3 mt-2" ngModel name="password" required minlength="6">
+    <div class="col-7 d-flex flex-column justify-content-center align-items-center">
+    <input type="text" class="form-control col-3 mt-2" ngModel name="username" required minlength="6" #username="ngModel" [style.border]="!username.valid && username.touched ? '1px solid red' : ''">
+    <span class="help-block mt-1 text-light p-1 rounded-3 validation-text align-content-center text-center" *ngIf="!username.valid && username.touched">You must enter valid username.</span>
+
+  </div>
+  <label for="password" class="fw-bold mt-1">Password</label>
+  <div class="col-7 d-flex flex-column justify-content-center align-items-center">
+      <input type="password" class="form-control col-3 mt-2" ngModel name="password" required minlength="6" #pasword="ngModel" [style.border]="!pasword.valid && pasword.touched ? '1px solid red' : ''">
+      <span class="help-block mt-1 text-light p-1 rounded-3 validation-text align-content-center text-center" *ngIf="!pasword.valid && pasword.touched">You must enter valid password.</span>
     </div>
     <input type="submit" class="btn btn-primary mb-5 mt-3 fw-bold " value="Login" [disabled]="!authForm.valid">
 

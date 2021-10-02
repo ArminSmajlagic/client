@@ -1,5 +1,7 @@
 import { Component, OnInit, DoCheck, OnChanges, SimpleChanges, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/Auth/Service/auth.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -8,21 +10,25 @@ import { AuthService } from 'src/app/Auth/Service/auth.service';
 })
 export class NavbarComponent implements OnInit,DoCheck,OnChanges {
 
-  @Input() logedIn:boolean=this.authService.currentUserValue ? true : false;
+  isLoggedIn$: Observable<boolean> | undefined;
 
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService) {
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
   }
 
   ngDoCheck(): void {
   }
 
   ngOnInit(): void {
+    this.isLoggedIn$=this.authService.isLoggedIn;
   }
 
   logout(){
     this.authService.logout();
   }
+
 
 }

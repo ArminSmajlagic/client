@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   password:string='';
   error:string='';
   returnUrl:string='';
+  @Output() success:boolean=false;
   constructor(private authService:AuthService,private router:Router,private route:ActivatedRoute) {
     if(this.authService.currentUserValue){
       router.navigate(["/"])
@@ -34,11 +35,13 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                   console.log(this.returnUrl)
+                  this.success=true;
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
                     this.error = error.error;
                 });
+
       form.reset();
   }
 }
